@@ -1,0 +1,32 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+  /**
+   * Run the migrations.
+   */
+  public function up(): void
+  {
+    Schema::create('grade_student_school_year', function (Blueprint $table) {
+      $table->id();
+      $table->date('enrollment_date');
+      $table->timestamps();
+
+      $table->foreignId('grade_id')->unsignedBigInteger()->constrained('grades')->onDelete('cascade');
+      $table->foreignId('student_id')->unsignedBigInteger()->constrained('students')->onDelete('cascade');
+      $table->foreignId('school_year_id')->unsignedBigInteger()->constrained('school_years')->onDelete('cascade');
+    });
+  }
+
+  /**
+   * Reverse the migrations.
+   */
+  public function down(): void
+  {
+    Schema::dropIfExists('grade_student_school_year');
+  }
+};

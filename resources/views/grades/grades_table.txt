@@ -1,0 +1,64 @@
+<x-splade-table
+            :for="$grades"
+            class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+            pagination-scroll="preserve">
+
+            <x-slot name="head">
+
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+                <tr>
+
+                  @foreach($grades->columns() as $column)
+
+                    <th scope="col" class="px-6 py-3">{{ $column->label }}</th>
+
+                  @endforeach
+
+                </tr>
+
+              </thead>
+
+            </x-slot>
+
+            <x-slot name="body">
+
+              <tbody>
+
+                @foreach($grades->resource as $grade)
+
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                      {{ $grade->first_name }}
+                    </th>
+
+                    <td class="px-6 py-4">
+                      {{ $grade->last_name }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                      {{ $grade->birthday }}
+                    </td>
+
+                    <td class="px-6 py-4">
+                      {{ $grade->age }} year{{ $grade->age > 1 ? 's' : '' }} old
+                    </td>
+
+                    <td class="px-6 py-4">
+                      {{ $grade->guardian->first_name . ' ' . $grade->guardian->last_name }}
+                    </td>
+
+                  </tr>
+
+                @endforeach
+
+              </tbody>
+
+            </x-slot>
+
+            <x-slot:empty-state>
+              <p>Whoops!</p>
+            </x-slot>
+
+          </x-splade-table>
