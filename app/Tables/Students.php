@@ -11,14 +11,16 @@ use ProtoneMedia\Splade\SpladeTable;
 class Students extends AbstractTable
 {
   private $id;
+  private $year;
   /**
    * Create a new instance.
    *
    * @return void
    */
-  public function __construct($id)
+  public function __construct($id, $year)
   {
     $this->id = $id;
+    $this->year = $year;
   }
 
   /**
@@ -39,7 +41,11 @@ class Students extends AbstractTable
    */
   public function for()
   {
-    return Student::query()->with('guardian')->where('grade_id', $this->id);
+    return Student::query()->with('guardian')
+      ->whereHas('grades', function ($query) {
+        $query->where('id', $this->id)
+          ->where('pivot.school_year_id', $this->year);
+      });
   }
 
   /**

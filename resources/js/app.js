@@ -11,6 +11,7 @@ import { SpladePlugin, renderSpladeApp } from '@protonemedia/laravel-splade'
 import 'vfonts/Inter.css'
 
 import Switch from './components/switch.vue'
+import Selectable from './components/selectable.vue'
 
 const el = document.getElementById('app')
 
@@ -23,6 +24,7 @@ createApp({
     progress_bar: true,
     components: {
       Switch,
+      Selectable,
     },
   })
   .mount(el)

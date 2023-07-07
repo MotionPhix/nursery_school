@@ -40,6 +40,13 @@ class StoreStudent
 
   private function validateData(array $data)
   {
+    $messages = [
+      'user_id.required' => 'Please pick a guardian for the student.',
+      'user_id.exists' => 'The selected user is not valid or is not a guardian.',
+      'birthday.required' => 'The birth of date field is required.',
+      'birthday.before_or_equal' => 'The student must be at least 8 months old to join our school.',
+    ];
+
     return validator($data, [
       'first_name' => 'required|string|max:50',
       'last_name' => 'required|string|max:50',
@@ -48,16 +55,6 @@ class StoreStudent
         Rule::exists('users', 'id')->where('type', 'guardian')
       ],
       'birthday' => 'required|date|before_or_equal:' . Date::today()->subMonths(8)->format('Y-m-d')
-    ])->validate($this->messages());
-  }
-
-  protected function messages()
-  {
-    return [
-      'user_id.required' => 'Please pick a guardian for the student.',
-      'user_id.exists' => 'The selected user is not valid or is not a guardian.',
-      'birthday.required' => 'The birth of date field is required.',
-      'birthday.before_or_equal' => 'The student must be at least 8 months old to join our school.',
-    ];
+    ], $messages)->validate();
   }
 }

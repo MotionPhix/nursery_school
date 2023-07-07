@@ -4,10 +4,10 @@
   <div class="relative p-4 sm:p-5">
 
     <!-- Modal header -->
-    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-gray-600">
 
       <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-        Add grade
+        Add school year
       </h3>
 
       <button
@@ -24,18 +24,17 @@
 
     <!-- Modal body -->
     <x-splade-form
-      :action="route('grades.store')"
+      :action="route('schoolyears.store')"
       autocomplete="off"
       class="space-y-6">
 
       <x-splade-input
-        autofocus
-        id="name"
+        id="year"
+        placeholder="Enter school year"
+        :label="__('School year')"
+        name="year"
         type="text"
-        name="name"
-        :label="__('Name')"
-        placeholder="Enter grade name e.g 'Elementary'"
-        autocomplete="off" />
+        autofocus />
 
       <div class="flex items-center justify-end">
         <x-splade-submit
@@ -43,7 +42,7 @@
           :label="__('Create')" />
       </div>
 
-  </x-splade-form>
+    </x-splade-form>
 
   </div>
 

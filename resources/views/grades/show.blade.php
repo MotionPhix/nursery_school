@@ -1,8 +1,8 @@
 <x-app-layout>
   <x-slot name="header">
     <x-splade-link
-      class="font-semibold text-xl text-gray-800 leading-tight"
-      href="{{ route('home') }}">
+      class="text-xl font-semibold leading-tight text-gray-800"
+      href="{{ route('grades.index') }}">
       {{ __('Grades') }}
     </x-splade-link>
 
@@ -26,15 +26,11 @@
   </x-slot>
 
   <div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-      <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
 
-          {{-- @forelse ($grade->students as $student) --}}
-            {{-- <x-splade-link
-              href="#">
-              {{ $student->first_name . ' ' . $student->last_name }}
-            </x-splade-link> --}}
+          @if($students)
 
             <x-splade-table
               :for="$students"
@@ -97,13 +93,13 @@
 
               <x-slot:empty-state>
                 <div class="p-12 text-center">
-                  <x-tabler-user-plus class="mb-7 mx-auto w-16 h-16" />
+                  <x-tabler-user-plus class="w-16 h-16 mx-auto mb-7" />
 
-                  <h3 class="mb-3 font-heading text-lg font-semibold">
+                  <h3 class="mb-3 text-lg font-semibold font-heading">
                     Add your first student
                   </h3>
 
-                  <p class="mb-7 text-neutral-500 max-w-sm mx-auto">
+                  <p class="max-w-sm mx-auto mb-7 text-neutral-500">
                     Create a student for your <strong>{{ $grade->name }}</strong> and the student will appear in the list above.</p>
 
                     <x-splade-link class="inline-flex flex-wrap items-center justify-center px-6 py-2.5 text-sm border hover:border-neutral-200 rounded-lg"
@@ -117,16 +113,17 @@
               </x-slot>
 
             </x-splade-table>
-          {{-- @empty --}}
 
-            {{-- <div class="p-12 text-center">
-              <x-tabler-user-plus class="mb-7 mx-auto w-16 h-16" />
+          @else
 
-              <h3 class="mb-3 font-heading text-lg font-semibold">
+            <div class="p-12 text-center">
+              <x-tabler-user-plus class="w-16 h-16 mx-auto mb-7" />
+
+              <h3 class="mb-3 text-lg font-semibold font-heading">
                 Add your first student
               </h3>
 
-              <p class="mb-7 text-neutral-500 max-w-sm mx-auto">
+              <p class="max-w-sm mx-auto mb-7 text-neutral-500">
                 Create a student for your <strong>{{ $grade->name }}</strong> and the student will appear in the list above.</p>
 
                 <x-splade-link class="inline-flex flex-wrap items-center justify-center px-6 py-2.5 text-sm border hover:border-neutral-200 rounded-lg"
@@ -136,9 +133,9 @@
 
                   <span class="font-medium" data-config-id="auto-txt-6-3">Add A Student</span>
                 </x-splade-link>
-            </div> --}}
+            </div>
 
-          {{-- @endforelse --}}
+          @endif
 
         </div>
       </div>

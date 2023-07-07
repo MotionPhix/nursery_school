@@ -4,7 +4,7 @@
   <div class="relative p-4 sm:p-5">
 
     <!-- Modal header -->
-    <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b rounded-t sm:mb-5 dark:border-gray-600">
 
       <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
         Add student
@@ -28,23 +28,60 @@
       autocomplete="off"
       class="space-y-6">
 
-     {{-- @dd($guardians) --}}
+      <x-splade-input
+        id="first_name"
+        placeholder="Enter student's first name"
+        :label="__('First name')"
+        name="first_name"
+        type="text"
+        autofocus />
 
-      <x-splade-input id="first_name" placeholder="Enter student's first name" type="text" name="first_name" :label="__('First name')" autofocus />
+      <x-splade-input
+        id="last_name"
+        placeholder="Enter student's last name"
+        :label="__('Last name')"
+        name="last_name"
+        type="text"   />
 
-      <x-splade-input id="last_name" placeholder="Enter student's last name" type="text" name="last_name" :label="__('Last name')" />
+      <x-splade-input
+        id="birthday"
+        placeholder="Provide student's birth date"
+        :label="__('Date of birth')"
+        name="birthday"
+        date  />
 
-      <x-splade-input id="birthday" placeholder="Provide student's birth date" date name="birthday" :label="__('Date of birth')" />
+      {{-- <Selectable :available_years="@js($years)" /> --}}
 
-      <x-splade-select name="user_id" placeholder="Pick a guardian for the student" :options="$guardians" choices />
+      <x-splade-select
+        name="user_id"
+        placeholder="Pick a guardian for the student"
+        :label="__('Guardian')"
+        :options="$guardians"
+        choices />
 
-      <x-splade-select name="school_year_id" placeholder="Pick student's year of enrollment" :options="$years" choices />
+      <x-splade-select
+        name="school_year_id"
+        placeholder="Pick student's year of enrollment"
+        :label="__('School year')"
+        :options="$years"
+        choices />
 
       <div class="flex items-center justify-end">
-          <x-splade-submit class="ml-4 bg-lime-500 hover:bg-opacity-75" :label="__('Create')" />
+
+        <x-splade-link
+          href="{{ route('schoolyears.create') }}"
+          class="flex items-center gap-2 font-bold transition-colors duration-500 hover:text-lime-800"
+          modal>
+          <x-tabler-plus /> <span>Add school year</span>
+        </x-splade-link>
+
+        <x-splade-submit
+          class="ml-4 bg-lime-500 hover:bg-opacity-75"
+          :label="__('Create')" />
+
       </div>
 
-  </x-splade-form>
+    </x-splade-form>
 
   </div>
 
