@@ -11,7 +11,7 @@ class ShowGrade
   {
     return view('grades.show', [
       'grade' => $grade,
-      'students' => Students::build()
+      'students' => Students::build($grade->id)
     ]);
   }
 }

@@ -10,14 +10,15 @@ use ProtoneMedia\Splade\SpladeTable;
 
 class Students extends AbstractTable
 {
+  private $id;
   /**
    * Create a new instance.
    *
    * @return void
    */
-  public function __construct()
+  public function __construct($id)
   {
-    //
+    $this->id = $id;
   }
 
   /**
@@ -38,7 +39,7 @@ class Students extends AbstractTable
    */
   public function for()
   {
-    return Student::query()->with('guardian');
+    return Student::query()->with('guardian')->where('grade_id', $this->id);
   }
 
   /**
