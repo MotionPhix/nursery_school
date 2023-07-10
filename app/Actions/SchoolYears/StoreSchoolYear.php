@@ -3,10 +3,8 @@
 namespace App\Actions\SchoolYears;
 
 use App\Models\SchoolYear;
-use App\Models\User;
 use App\Rules\SubsequentYears;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use ProtoneMedia\Splade\Facades\Toast;
 

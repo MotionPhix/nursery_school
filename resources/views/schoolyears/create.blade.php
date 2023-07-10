@@ -1,4 +1,8 @@
-<x-splade-modal close-explicitly :close-button="false" max-width="lg">
+<x-splade-modal
+  close-explicitly
+  :close-button="false"
+  position="top"
+  max-width="lg">
 
   <!-- Modal content -->
   <div class="relative p-4 sm:p-5">
@@ -25,8 +29,10 @@
     <!-- Modal body -->
     <x-splade-form
       :action="route('schoolyears.store')"
+      @success="$splade.emit('school-year-added')"
       autocomplete="off"
-      class="space-y-6">
+      class="space-y-6"
+      stay>
 
       <x-splade-input
         id="year"

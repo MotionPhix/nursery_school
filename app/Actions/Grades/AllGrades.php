@@ -9,7 +9,7 @@ class AllGrades
   public function __invoke()
   {
     return view('grades.index', [
-      'grades' => Grade::get(['name', 'id']),
+      'grades' => Grade::get(['name', 'description', 'id']),
     ]);
   }
 }

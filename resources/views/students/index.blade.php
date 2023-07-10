@@ -61,6 +61,12 @@
                       {{ $student->guardian->first_name . ' ' . $student->guardian->last_name }}
                     </td>
 
+                    <td class="px-6 py-4">
+                      <x-splade-link href="/students/{{ $student->id }}">
+                        <x-tabler-pencil /> {{ See student }}
+                      </x-splade-link>
+                    </td>
+
                   </tr>
 
                 @endforeach

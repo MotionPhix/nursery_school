@@ -17,6 +17,10 @@ class StoreGrade
 
     $grade->name = $validatedData['name'];
 
+    if ($request->filled('description')) {
+      $grade->description = $validatedData['description'];
+    }
+
     $grade->save();
 
     Toast::autoDismiss(7)->title('Great going!')->success('Grade was successfully created.');
@@ -28,6 +32,7 @@ class StoreGrade
   {
     return validator($data, [
       'name' => 'required|string|max:50',
+      'description' => 'nullable|string|max:200',
     ])->validate();
   }
 }

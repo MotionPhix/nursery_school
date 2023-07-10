@@ -26,6 +26,12 @@ class StoreStudent
     $student->last_name = $validatedData['last_name'];
     $student->birthday = $validatedData['birthday'];
     $student->user_id = $validatedData['user_id'];
+    $student->grade_id = $grade->id;
+
+    if ($request->filled('biography')) {
+      $student->biography = $validatedData['biography'];
+    }
+
     $student->save();
 
     $student->grades()->attach($grade, [
@@ -54,7 +60,8 @@ class StoreStudent
         'required',
         Rule::exists('users', 'id')->where('type', 'guardian')
       ],
-      'birthday' => 'required|date|before_or_equal:' . Date::today()->subMonths(8)->format('Y-m-d')
+      'birthday' => 'required|date|before_or_equal:' . Date::today()->subMonths(8)->format('Y-m-d'),
+      'biography' => 'nullable|string',
     ], $messages)->validate();
   }
 }

@@ -1,4 +1,8 @@
-<x-splade-modal close-explicitly :close-button="false" max-width="lg">
+<x-splade-modal
+  close-explicitly
+  :close-button="false"
+  position="top"
+  max-width="lg">
 
   <!-- Modal content -->
   <div class="relative p-4 sm:p-5">
@@ -36,6 +40,12 @@
         :label="__('Name')"
         placeholder="Enter grade name e.g 'Elementary'"
         autocomplete="off" />
+
+      <x-splade-textarea
+        label="Description"
+        placeholder="Describe the grade a little bit"
+        name="description"
+        autosize />
 
       <div class="flex items-center justify-end">
         <x-splade-submit

@@ -1,4 +1,8 @@
-<x-splade-modal close-explicitly :close-button="false" max-width="lg">
+<x-splade-modal
+  close-explicitly
+  :close-button="false"
+  position="top"
+  max-width="lg">
 
   <!-- Modal content -->
   <div class="relative p-4 sm:p-5">

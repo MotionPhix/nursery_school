@@ -4,6 +4,7 @@ import '../css/app.css'
 // import "@protonemedia/laravel-splade/dist/style.css";
 import '../css/choices.scss'
 import '../css/flatpickr.styl'
+import "@protonemedia/laravel-splade/dist/jodit.css";
 
 import { createApp } from 'vue/dist/vue.esm-bundler.js'
 import { SpladePlugin, renderSpladeApp } from '@protonemedia/laravel-splade'

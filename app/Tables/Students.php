@@ -43,8 +43,8 @@ class Students extends AbstractTable
   {
     return Student::query()->with('guardian')
       ->whereHas('grades', function ($query) {
-        $query->where('id', $this->id)
-          ->where('pivot.school_year_id', $this->year);
+        $query->where('grades.id', $this->id)
+          ->where('grade_student_school_year.school_year_id', $this->year);
       });
   }
 
@@ -56,6 +56,8 @@ class Students extends AbstractTable
    */
   public function configure(SpladeTable $table)
   {
+    $availableYears = \App\Models\SchoolYear::pluck('year', 'id')->toArray();
+
     $table
       // ->withGlobalSearch(columns: ['id'])
       ->bulkAction(
@@ -74,6 +76,12 @@ class Students extends AbstractTable
       ->column('born_on')
       ->column('age')
       ->column('guardian.first_name', 'Guardian')
+      ->column('Actions')
+      ->selectFilter(
+        key: 'school_year_id',
+        label: 'School Year',
+        options: $availableYears
+      )
       ->paginate(15);
 
     // ->searchInput()

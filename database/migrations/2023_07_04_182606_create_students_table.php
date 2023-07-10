@@ -16,9 +16,11 @@ return new class extends Migration
       $table->string('first_name', 50);
       $table->string('last_name', 50);
       $table->date('birthday')->nullable();
+      $table->text('biography')->nullable();
       $table->timestamps();
 
       $table->foreignId('user_id')->unsignedBigInteger()->constrained('users')->onDelete('cascade');
+      $table->foreignId('grade_id')->unsignedBigInteger()->constrained('grades');
     });
   }
 

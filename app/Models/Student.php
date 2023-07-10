@@ -33,6 +33,11 @@ class Student extends Model
       ->where('type', 'guardian');
   }
 
+  public function grade()
+  {
+    return $this->belongsTo(Grade::class);
+  }
+
   public function grades()
   {
     return $this->belongsToMany(Grade::class, 'grade_student_school_year')

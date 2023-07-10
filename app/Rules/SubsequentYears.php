@@ -17,6 +17,11 @@ class SubsequentYears implements ValidationRule
   {
     $latestYear = \App\Models\SchoolYear::latest()->value('year');
 
+    // If there are no years previously added, the rule should pass
+    if ($latestYear === null) {
+      return;
+    }
+
     // Get the start year from the latest school year
     $startYear = intval(substr($latestYear, 0, 4));
 

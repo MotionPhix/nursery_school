@@ -1,4 +1,8 @@
-<x-splade-modal close-explicitly :close-button="false" max-width="lg">
+<x-splade-modal
+  close-explicitly
+  :close-button="false"
+  position="top"
+  max-width="2xl">
 
   <!-- Modal content -->
   <div class="relative p-4 sm:p-5">
@@ -28,20 +32,52 @@
       autocomplete="off"
       class="space-y-6">
 
-      <x-splade-input
-        id="first_name"
-        placeholder="Enter student's first name"
-        :label="__('First name')"
-        name="first_name"
-        type="text"
-        autofocus />
+      <div
+        class="grid grid-cols-2 gap-2">
+        <x-splade-input
+          id="first_name"
+          placeholder="Enter student's first name"
+          :label="__('First name')"
+          name="first_name"
+          type="text"
+          autofocus />
 
-      <x-splade-input
-        id="last_name"
-        placeholder="Enter student's last name"
-        :label="__('Last name')"
-        name="last_name"
-        type="text"   />
+        <x-splade-input
+          id="last_name"
+          placeholder="Enter student's last name"
+          :label="__('Last name')"
+          name="last_name"
+          type="text"   />
+      </div>
+
+      <div
+        class="grid grid-cols-2 gap-2">
+
+
+        <x-splade-rehydrate
+          on="guardian-added">
+          <x-splade-select
+            name="user_id"
+            placeholder="Pick a guardian for the student"
+            :label="__('Guardian')"
+            remote-url="/guardians"
+            option-label="name"
+            option-value="id"
+            choices />
+        </x-splade-rehydrate>
+
+        <x-splade-rehydrate
+          on="school-year-added">
+          <x-splade-select
+            name="school_year_id"
+            placeholder="Pick student's year of enrollment"
+            :label="__('School year')"
+            remote-url="/school-years"
+            option-label="year"
+            option-value="id"
+            choices />
+        </x-splade-rehydrate>
+      </div>
 
       <x-splade-input
         id="birthday"
@@ -50,30 +86,32 @@
         name="birthday"
         date  />
 
-      {{-- <Selectable :available_years="@js($years)" /> --}}
+      <x-splade-wysiwyg
+        label="Bio"
+        placeholder="Information related to the student e.g. allergies, etc"
+        jodit="{ showXPathInStatusbar: true }"
+        name="biography" />
 
-      <x-splade-select
-        name="user_id"
-        placeholder="Pick a guardian for the student"
-        :label="__('Guardian')"
-        :options="$guardians"
-        choices />
+      <div class="flex items-center justify-between">
 
-      <x-splade-select
-        name="school_year_id"
-        placeholder="Pick student's year of enrollment"
-        :label="__('School year')"
-        :options="$years"
-        choices />
+        <section
+          class="flex items-center gap-4">
 
-      <div class="flex items-center justify-end">
+          <x-splade-link
+            href="{{ route('guardians.create') }}"
+            class="flex items-center gap-2 bg-gray-200 px-2 py-1.5 font-bold rounded hover:bg-gray-300 transition-colors duration-500 hover:text-lime-800"
+            modal>
+            <x-tabler-user-plus class="h-5 w-5" /> <span>Add parent</span>
+          </x-splade-link>
 
-        <x-splade-link
-          href="{{ route('schoolyears.create') }}"
-          class="flex items-center gap-2 font-bold transition-colors duration-500 hover:text-lime-800"
-          modal>
-          <x-tabler-plus /> <span>Add school year</span>
-        </x-splade-link>
+          <x-splade-link
+            href="{{ route('schoolyears.create') }}"
+            class="flex items-center gap-2 bg-gray-200 px-2 py-1.5 font-bold rounded hover:bg-gray-300  transition-colors duration-500 hover:text-lime-800"
+            modal>
+            <x-tabler-plus class="h-5 w-5" /> <span>Add school year</span>
+          </x-splade-link>
+
+        </section>
 
         <x-splade-submit
           class="ml-4 bg-lime-500 hover:bg-opacity-75"
