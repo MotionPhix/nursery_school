@@ -1,4 +1,4 @@
-@seoTitle(__('New Server'))
+@seoTitle(__('School Management | Grade data'))
 
 <x-app-layout>
   <x-slot name="header">
@@ -83,6 +83,14 @@
 
                       <td class="px-6 py-4">
                         {{ $student->guardian->first_name . ' ' . $student->guardian->last_name }}
+                      </td>
+
+                      <td class="px-6 py-4">
+                        <x-splade-link
+                          href="/students/{{ $student->id }}"
+                          class="flex items-center gap-2 text-right">
+                          <x-tabler-pencil class="w-5 h-5" /> <span>See student</span>
+                        </x-splade-link>
                       </td>
 
                     </tr>

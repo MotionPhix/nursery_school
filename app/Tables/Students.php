@@ -76,7 +76,7 @@ class Students extends AbstractTable
       ->column('born_on')
       ->column('age')
       ->column('guardian.first_name', 'Guardian')
-      ->column('Actions')
+      ->column('actions', '')
       ->selectFilter(
         key: 'school_year_id',
         label: 'School Year',

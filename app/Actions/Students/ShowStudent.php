@@ -12,8 +12,7 @@ class ShowStudent
   public function __invoke(Student $student)
   {
     return view('students.show', [
-      'student' => $student,
-      'grades' => Grade::get()
+      'student' => $student->load('grades'),
     ]);
   }
 }

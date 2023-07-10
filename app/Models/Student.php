@@ -27,6 +27,11 @@ class Student extends Model
     return Carbon::parse($this->birthday)->format('j M, Y');
   }
 
+  public function avatar()
+  {
+    return $this->morphOne(Avatar::class, 'avatarable');
+  }
+
   public function guardian()
   {
     return $this->belongsTo(User::class, 'user_id')
@@ -41,14 +46,7 @@ class Student extends Model
   public function grades()
   {
     return $this->belongsToMany(Grade::class, 'grade_student_school_year')
-      ->withPivot('enrollment_date', 'school_year')
-      ->withTimestamps();
-  }
-
-  public function enrollmentHistory()
-  {
-    return $this->hasMany(Grade::class, 'grade_student_school_year')
-      ->withPivot('enrollment_date', 'school_year')
+      ->withPivot('enrollment_date', 'school_year_id')
       ->withTimestamps();
   }
 }

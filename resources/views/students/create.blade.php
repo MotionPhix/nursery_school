@@ -71,6 +71,7 @@
           <x-splade-select
             name="school_year_id"
             placeholder="Pick student's year of enrollment"
+            select-first-remote-option
             :label="__('School year')"
             remote-url="/school-years"
             option-label="year"
@@ -101,14 +102,14 @@
             href="{{ route('guardians.create') }}"
             class="flex items-center gap-2 bg-gray-200 px-2 py-1.5 font-bold rounded hover:bg-gray-300 transition-colors duration-500 hover:text-lime-800"
             modal>
-            <x-tabler-user-plus class="h-5 w-5" /> <span>Add parent</span>
+            <x-tabler-user-plus class="w-5 h-5" /> <span>Add parent</span>
           </x-splade-link>
 
           <x-splade-link
             href="{{ route('schoolyears.create') }}"
             class="flex items-center gap-2 bg-gray-200 px-2 py-1.5 font-bold rounded hover:bg-gray-300  transition-colors duration-500 hover:text-lime-800"
             modal>
-            <x-tabler-plus class="h-5 w-5" /> <span>Add school year</span>
+            <x-tabler-plus class="w-5 h-5" /> <span>Add school year</span>
           </x-splade-link>
 
         </section>

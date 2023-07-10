@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class SchoolYear extends Model
 {
-    use HasFactory;
+  use HasFactory;
+
+  public function students()
+  {
+    return $this->belongsToMany(Student::class)
+      ->withPivot('grade')
+      ->withTimestamps();
+  }
 }
