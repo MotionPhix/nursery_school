@@ -21,7 +21,7 @@
               <x-splade-checkbox id="remember_me" name="remember" :label="__('Remember me')" />
 
               @if (Route::has('password.request'))
-                <Link class="underline text-sm text-gray-600 dark:text-gray-300 dark:hover:text-gray-100 hover:text-gray-900" href="{{ route('password.request') }}">
+                <Link class="text-sm text-gray-600 underline dark:text-gray-300 dark:hover:text-gray-100 hover:text-gray-900" href="{{ route('password.request') }}">
                     {{ __('Forgot your password?') }}
                 </Link>
               @endif
