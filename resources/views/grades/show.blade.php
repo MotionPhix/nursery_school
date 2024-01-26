@@ -14,6 +14,23 @@
 
     <span class="flex-1"></span>
 
+    <Filter>
+      @foreach($schoolYears as $yr)
+        <MenuItem>
+          <x-splade-link
+            :href="route('grades.show', ['grade' => $grade->id, 'school_year' => $yr->id])"
+            class="flex items-center w-full px-2 py-2 text-sm font-semibold text-gray-900 transition duration-200 rounded-md hover:bg-gray-100 group"
+          >
+            <IconCalendarTime
+              class="w-5 h-5 mr-2 text-violet-400"
+              aria-hidden="true"
+            />
+            {{ $yr->year }}
+          </x-splade-link>
+        </MenuItem>
+      @endforeach
+    </Filter>
+
     @if ($grade->students->count())
 
       <x-splade-link

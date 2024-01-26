@@ -10,17 +10,17 @@ use ProtoneMedia\Splade\SpladeTable;
 
 class Students extends AbstractTable
 {
-  private $id;
-  private $year;
+  private $gradeId;
+  private $yearId;
   /**
    * Create a new instance.
    *
    * @return void
    */
-  public function __construct($id, $year)
+  public function __construct($gradeId, $yearId)
   {
-    $this->id = $id;
-    $this->year = $year;
+    $this->gradeId = $gradeId;
+    $this->yearId = $yearId;
   }
 
   /**
@@ -43,8 +43,8 @@ class Students extends AbstractTable
   {
     return Student::query()->with('guardian')
       ->whereHas('grades', function ($query) {
-        $query->where('grades.id', $this->id)
-          ->where('grade_student_school_year.school_year_id', $this->year);
+        $query->where('grades.id', $this->gradeId)
+          ->where('grade_student_school_year.school_year_id', $this->yearId);
       });
   }
 
@@ -77,11 +77,6 @@ class Students extends AbstractTable
       ->column('age')
       ->column('guardian.first_name', 'Guardian')
       ->column('actions', '')
-      ->selectFilter(
-        key: 'school_year_id',
-        label: 'School Year',
-        options: $availableYears
-      )
       ->paginate(15);
 
     // ->searchInput()
